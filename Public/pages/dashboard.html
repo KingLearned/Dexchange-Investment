@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="images/x-icon" href="../images/icons/x-icon.png">
+    <link rel="stylesheet" href="../styles/fontawesome-free-5.13.0-web/css/all.css">
+    <link rel="icon" type="image/x-icon" href="./images/x-icon.png">
+    <link rel="stylesheet" href="../styles/css/main.css">
+    <link rel="stylesheet" href="../styles/css/query.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <title>Account</title>
+</head>
+<body>
+<div class="big-container">
+    <div class="account">
+        <div class="left_control">
+            <h1><a href="/"><img src="../images/icons/logo.png" alt=""></a></h1>
+            <h2 class="Client_Name">HELLO, USER!</h2>
+            <h2 onclick="home()" class="home"><i class="fa fa-home"></i> Account</h2>
+            <h2 onclick="deposit()" class="dep"><i class="fa fa-money-check-alt"></i>deposit</h2>
+            <h2 onclick="referrals()" class="ref"><i class="fa fa-user-friends"></i>Referrals</h2>
+            <h2 onclick="referrallink()" class="reflink"><i class="fa fa-link"></i>Referral Link</h2>
+            <h2 onclick="withdrawal()" class="with"><i class="fa fa-wallet"></i>Withdraw</h2>
+            <h2 onclick="accountedit()" class="edit"><i class="fa fa-user-edit"></i> Edit Account</h2>
+            <h2 onclick="security()" class="sec"><i class="fa fa-lock"></i>Security</h2>
+            <h2 onclick="logoutbtn()"><i class="fa fa-long-arrow-alt-left"></i>Log Out</h2>
+        </div>
+        <!-- ######## ACCOUNT DASH ############## -->
+        <div class="right_control">
+            <div class="first">
+                    <div>
+                        <h3>Total Withdrawals</h3>
+                        <h2 class="Total_Withdraw">$0.00</h2>
+                        <h2>USD</h2>
+                        <p>Withdrawals</p>
+                    </div>
+                    <div>
+                        <h3>Total Earned</h3>
+                        <h2 class="Total_Earned">$00.00</h2>
+                        <h2>USD</h2>
+                        <p>Earnings</p>
+                    </div>
+                    <div>
+                        <h3>Account Balance</h3>
+                        <h2 class="Wallet_Balance">$00.00</h2>
+                        <h2>USD</h2>
+                        <p>Deposits</p>
+                    </div>
+                    <div>
+                        <h3>Total Deposit</h3>
+                        <h2 class="Wallet_TD">$00.00</h2>
+                        <h2>USD</h2>
+                        <p>Deposits</p>
+                    </div>
+            </div>
+            
+            <div class="second Account_Details">
+                <h2>Account Details</h2>
+                <table style="border-collapse: collapse;">
+                    <thead>
+                       <tr>
+                          <th>Account <br>Balance </th>
+                          <th>Current <br>Earned </th>
+                          <th>Referral <br>Commission </th>
+                          <th>Pending <br>Withdrawal </th>
+                          <th>Withdrawal <br>Status</th>
+                          <th>Withdraw<br>Date </th>
+                          <th>Last <br>Deposit </th>
+                          <th>Last <br>Withdrawal </th>   
+                       </tr>
+                    </thead>
+                     <tbody>
+                        <tr>
+                           <td class="Wallet_SB">$0.00</td>
+                           <td class="Current_Earned">$0.00</td>
+                           <td class="Commission">$0.00</td>
+                           <td class="Pend_Notice" style="color: red;">$0.00</td>
+                           <td class="Pend_status">Loading...</td>
+                           <td class="With_Date">Loading...</td>
+                           <td class="Last_DP">$0.00</td>
+                           <td class="Last_WTH">$0.00</td>
+                        </tr>
+                      </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- ######## DEPOSIT DASH ############## -->
+        <div class="deposit">
+            <h1>Make a Deposit</h1>
+            <div class="first">
+                <div>
+                    <h2>20% <br> <span>AFTER 2 DAYS</span></h2>
+                    <h4>Basic Pack</h4>
+                    <h3>$50 - $5,000</h3>
+                    <h5>DEPOSIT <br>Returned</h5>
+                </div>
+                <div>
+                    <h2>45% <br> <span>AFTER 4 DAYS</span></h2>
+                    <h4>Standard Pack</h4>
+                    <h3>$6,000 - $20,000</h3>
+                    <h5>DEPOSIT <br>Returned</h5>
+                </div>
+                <div>
+                    <h2>70% <br> <span>AFTER 6 DAYS</span></h2>
+                    <h4>Professional Pack</h4>
+                    <h3>$21,000 - $50,000</h3>
+                    <h5>DEPOSIT <br>Returned</h5>
+                </div>
+            </div>
+            <div class="second">
+            <form method="POST">
+                <label for="select_plan">Select Plan</label>
+                <select name="select_plan" class="select_plan">
+                    <option value="Basic Pack">Basic Pack</option>
+                    <option value="Standard Pack">Standard Pack</option>
+                    <option value="Professional Pack">Professional Pack</option>
+                </select>
+                <label for="pay_mtd">Payment Method</label>
+                <select name="pay_mtd">
+                    <option value="Basic Pack">Bitcoin</option>
+                </select>
+                <label for="pay_mtd">Your Account Balance ($)</label>
+                <h5 class="current_bal"></h5>
+                <label for="pay_mtd">Enter Deposit Amount [Max: 50,000] ($)</label>
+                <input type="text" name="deposit_amount" class="deposit_amount" value="0">
+                <label for="pay_mtd">Return Of Investment [ROI] ($):</label>
+                <h5 class="ROI">0</h5>
+                <button>DEPOSIT</button>
+            </form>
+            </div>
+        </div>
+        <!-- ######## REFERRAL DASH ############## -->
+        <div class="referral">
+            <h1>Referrals</h1>
+            <div class="first">
+                <div>
+                    <h3>Total <br>Referrals</h3>
+                    <h6 class="Total_ref">0</h6>
+                </div>
+                <div>
+                    <h3>Active <br>Referrals</h3>
+                    <h6 class="Active_ref">0</h6>
+                </div>
+                <div>
+                    <h3>Referral <br>Commision</h3>
+                    <h6 class="Commission">$0.00</h6>
+                </div>
+                <div>
+                    <h3>Your <br>Upline</h3>
+                    <h6 class="upliner">loading...</h6>
+                </div>
+            </div>
+        </div>
+        <!-- ######## REFERRAL LINK DASH ############## -->
+        <div class="referral_link">
+            <h1>Referral Link</h1>
+            <div>
+                <h2>Your Referral Link</h2>
+                <h2 class="yourref">Ref-Key-Nelson2115</h2>
+                <button onclick="copylink()">COPY LINK</button>
+            </div>
+        </div>
+        <!-- ######## WITHDRAWAL  DASH ############## -->
+        <div class="withdraw">
+            <!-- ######## WITHDRAWAL  FORM ############## -->
+            <div class="withdraw_form">
+                <botton class="close">X</botton>
+                <form method="POST">
+                    <label for="">Amount ($)</label>
+                    <input type="text" placeholder="Enter Amount To Withdraw!" class="check" required>
+                    <h4 class="Wallet_Nofity"></h4>
+                    <input type="submit" value="WITHDRAW NOW" class="With_Btn">
+                    <h3 class="Notify"></h3>
+                </form>
+            </div>
+            <!-- ############################################# -->
+            <h1>Withdraw</h1>
+            <div class="first">
+                <div class="pend">
+                    <h2>Account Balance:</h2><span class="avail">$0.00</span>
+                    <h2>Pending Withdrawals:</h2><span class="Pend_Notice">Loading...</span>
+                </div>
+                <div class="second">
+                    <div>
+                        <h3>Processing</h3>
+                        <h4>Bitcoin</h4>
+                    </div>
+                    <div>
+                        <h3>Available</h3>
+                        <h4 class="avail">loading...</h4>
+                    </div>
+                    <div>
+                        <h3>Pending</h3>
+                        <h4 class="proc Pend_Notice">$0.00</h4>
+                    </div>
+                    <div>
+                        <h3>Account (Bitcoin wallet:)</h3>
+                        <h4 class="Wallet_Address">bt1qqrechgh4mb58zunff7cvahywdwrysjdbfg8th</h4>
+                    </div>
+                </div>
+                    <h5 class="withdraw_note">You have no funds to withdraw.</h5>
+                    <span class="withdraw_btn"></span>
+            </div>
+        </div>
+        <!-- ######## EDIT ACCOUNT  DASH ############## -->
+        <div class="edit_account">
+            <h1>Edit Account</h1>
+            <div class="first">
+                <div>
+                    <h2>Profile Name:</h2>
+                    <h5 class="Profile_Name">User</h5>
+                </div>
+                <div>
+                    <h2>Profile Email:</h2>
+                    <h5 class="Client_Email">chithomzzy@gmail.com</h5>
+                </div>
+                <div>
+                    <h2>Wallet Address: (btc)</h2>
+                    <h5 class="Client_Wallet">chithomzzy@gmail.com</h5>
+                </div>
+            </div>
+            <div class="second">
+                <form method="POST">
+                    <label>Change Wallet Adddress:</label>
+                    <input type="text" name="new_wallet_Add" placeholder="Enter New Wallet Address" required>
+                    <input type="submit" value="SAVE CHANGES">
+                </form>
+            </div>
+        </div>
+        <!-- ######## SECURITY  DASH ############## -->
+        <div class="security">
+            <h1>Security (Change Password)</h1>
+            <div class="first">
+                <div>
+                    <h2>Profile Name:</h2>
+                    <h5 class="Profile_Name"></h5>
+                </div>
+                <div>
+                    <h2>Profile Email:</h2>
+                    <h5 class="Client_Email"></h5>
+                </div>
+                <div>
+                    <h2>Last Changed Date:</h2>
+                    <h5 class="Last_Update">Fri Oct 28 2022 6:36:30</h5>
+                </div>
+            </div>
+            <div class="second">
+                <form method="POST">
+                    <label>Enter Current Password:</label>
+                    <input type="text" id="current_pwd" placeholder="Enter Current Password" required>
+                    <label>Enter New Password:</label>
+                    <input type="text" id="new_pass" placeholder="Enter New Password" required>
+                    <label>Confirm New Password:</label>
+                    <input type="text" id="cnew_pass" placeholder="Confirm New Password" required>
+                    <input type="submit" value="SAVE CHANGES" id="new_pwd">
+                    <span class="pwd_notify"></span>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/helper.js"></script>
+<script type="text/javascript" src="../js/account.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="images/x-icon" href="../images/icons/x-icon.png">
+    <link rel="stylesheet" href="../styles/fontawesome-free-5.13.0-web/css/all.css">
+    <link rel="icon" type="image/x-icon" href="./images/x-icon.png">
+    <link rel="stylesheet" href="../styles/css/main.css">
+    <link rel="stylesheet" href="../styles/css/query.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <title>Account</title>
+</head>
+<body>
+<div class="container">
+    <div class="head">
+        <h1>Admin Dash Board</h1>
+        <div class="cover">
+            <i class="fa fa-bell"></i>
+            <h4 class="NoteI">0</h4>
+        </div>
+    </div>
+    
+    <div class="manager">
+        <div class="main">
+            <h1 class="no" onclick="Admin()">No:</h1>
+            <h1 class="users">Users</h1>
+            <h1 class="balance">Balance($)</h1>
+            <h1 class="withdraw_amt">Req Amount($)</h1>
+            <h1 class="date">Date</h1>
+            <h1 class="action">APPROVE</h1>
+            <h1 class="action">REJECT</h1>
+        </div>
+        
+    </div>
+    <div class="display manager">
+
+    </div>
+    <form method="POST" class="run" hidden><input type="text" name="approved" class="approved"></form>
+    <script>
+        function Admin(){
+            $.ajax({
+                method: "POST",
+                success: (data) => {
+                    $('.NoteI').html(data.MainLog.length)
+
+                    const Handle = document.querySelector('.display')
+                    if(data.MainLog.length > 0){
+                        var content = ''
+                        for (let i = 0; i < data.MainLog.length; i++) {
+                            content += `
+                            <div>
+                                <h1 class="no">${i+1}</h1>
+                                <h1 class="users">${data.MainLog[i].client_name}</h1>
+                                <h1 class="balance">$${Number(data.MainLog[i].balance).toLocaleString()}</h1>
+                                <h1 class="withdraw_amt ramt">$${data.MainLog[i].amount}</h1>
+                                <h1 class="date">${data.MainLog[i].date}</h1>
+                                <h1 class="approve ${data.MainLog[i].client_name}">APPROVE</h1>
+                                <h1 class="reject ">REJECT</h1>
+                            </div>`
+                        }
+                        Handle.innerHTML = content
+
+                        for (let i = 0; i < data.MainLog.length; i++) {
+                            const Approve = document.querySelector(`.${data.MainLog[i].client_name}`)
+                            const name = document.querySelector(`.approved`)
+                            name.value = data.MainLog[i].client_name
+                            Approve.addEventListener('click', () => {
+                                const run = document.querySelector('.run')
+                                name.value = data.MainLog[i].client_name
+                                run.submit()
+                            })
+                        }
+                    }else{
+                        Handle.innerHTML = `<div><h1 class="req">No Current Withdrawal Request!</h1></div>`
+                    }
+                },
+                error: (err) => {
+                    console.log(err)
+                }
+            })
+        }Admin()
+        var count = 0
+        function Run(){
+            $.ajax({
+                method: "POST",
+                success: (data) => {
+        
+                    if(data.MainLog.length > count){
+                        Admin()
+                        if(count < data.MainLog.length){
+                            count = data.MainLog.length
+                        }
+                    }
+                },
+                error: (err) => {
+                    console.log(err)
+                }
+            })
+        }
+        const AT = setInterval(Run,1000);
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,448 @@
+@media screen and (max-width:500px) {
+    .top-menu{
+        position: sticky;
+        top: 0;
+        z-index: 9;
+        display: flex;
+        width: 100%;
+        height: 10vh;
+        background-color: black;
+        padding: 5px 10px;
+    }
+    .top-menu .logo-cover img{
+        width: 150px;
+        height: 50px;
+    }
+    .top-menu button{
+        display: block;
+        background-color: transparent;
+        border: 1px solid gold;
+        color: gold;
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 1.5vh;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bolder;
+        transform: rotate(90deg);
+    }
+    .top-menu button:hover{
+        background-color: gold;
+        color: black;
+    }
+    .nav-cover{
+        position: absolute;
+        right: 0;
+        top: 10vh;
+        background-color: rgba(0, 0, 0, 0.866);
+        height: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        overflow: hidden;
+    }
+    .nav-cover span{
+        color: white;
+        margin: 10px 0;
+    }
+    .bg-slide{
+        height: 80vh;
+    }
+    .slide-content h1{
+        font-size: 45px;
+    }
+    .bg-slide a{
+        position: absolute;
+        top: 73%;
+        right: 50%;
+        transform: translate(50%);
+        font-size: 18px;
+    }
+    .intro h1{
+        font-size: 25px;
+    }
+    /* ################################# */
+    .we_do{
+        height: 100%;
+    }
+    .we_do h1{
+        font-size: 25px;
+    }
+    .we_do .content{
+        flex-direction: column;
+        align-items: center;
+    }
+    .we_do .content div{
+        margin: 10px 0;
+        width: 90%;
+    }
+    /* ################################# */
+    .steps{
+        height: 100%;
+    }
+    .steps h3{
+        font-size: 25px;
+        margin: 30px 0;
+    }
+    .steps .content{
+        flex-direction: column;
+        align-items: center;
+    }
+    .steps .content div{
+        margin: 10px 0;
+        width: 90%;
+        height: 40vh;
+    }
+    /* ################################# */
+    .about{
+        margin-top: 30px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .about div{
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+    }
+    .about div img{
+        width: 100%;
+        height: 100%;
+    }
+    .about div h1{
+        font-size: 30px;
+        text-align: center;
+    }
+    /* ################################# */
+    .trade{
+        height: 100%;
+        margin-top: 50px;
+    }
+    .trade .content{
+        display: grid;
+        grid-template-columns: 47% 47%;
+        justify-content: center;
+    }
+    .trade .content div{
+        margin: 10px;
+        height: auto;
+        font-size: 18px;
+    }
+    .trade .content div h4{
+        font-size: 18px;
+    }
+    /* ############################################## */
+    .stat{
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+    }
+    .stat article{
+        width: 100%;
+        height: 50%;
+    }
+    .stat .row-1{
+        display: none;
+    }
+    /* ############################################## */
+    .plan{
+        height: 100%;
+    }
+    .plan .content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .plan .content div{
+        width: 60%;
+        height: 70vh;
+        margin: 10px;
+        padding: 5px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(4, 4, 26);
+    }
+    .plan .content div h2{
+        font: 900 25px bebas;
+        text-align: center;
+        padding: 10px 0;
+        background-color: rgba(4, 4, 26, 0.901);
+        color: red;
+    }
+    .plan .content div h3{
+        font: 100 25px robot-regular;
+        text-align: center;
+        font-style: italic;
+        padding: 12.5px;
+        background-color: skyblue;
+    }
+    .plan .content div h3:nth-child(7){
+        background-color: white;
+        color: rgba(4, 4, 26, 0.901);
+    }
+    .plan .content div h4{
+        text-align: center;
+        font-size: 25px;
+        padding: 5px;
+    }
+    .plan .content .select{
+        padding: 20px;
+    }
+    .plan .content .select a{
+        background-color: rgb(16, 160, 218);
+        color: white;
+        padding: 5px 20px;
+    } 
+    .plan .content .select a:hover{
+        background-color: rgb(70, 200, 252);
+    }
+    .footer_side{
+        height: 100%;
+    }
+    .footer_side .col-1{
+        flex-direction: column;
+    }
+    .footer_side .col-1 div{
+        margin: 10px 0;
+        padding: 5px;
+        width: 35vw;
+    }
+    .footer_side .copywrite{
+        font-size: 20px;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    /* ###################### LOGIN FORM ############################# */
+    .login_form form, .signup_form form{
+        width: 80vw;
+        height: 80vh;
+    }
+    .login_form form img, .signup_form form img{
+        width: 30%;
+        height: 25%;
+    }
+    .login_form h2{
+        color: white;
+        font-size: 25px;
+        margin: 0 10px;
+    }
+    .login_form form input{
+        width: 50vw;
+    }
+    .login_form form input[type=submit]{
+        width: 20vw;
+    }
+    /* ###################### SIGNUP FORM ############################# */
+    .signup_form form{
+        width: 80vw;
+        height: 85vh;
+    }
+    .signup_form form img{
+        width: 20%;
+        height: 15%;
+    }
+    .signup_form h2{
+        font-size: 25px;
+        margin: 0 10px;
+    }
+    .signup_form form input{
+        width: 50vw;
+    }
+    .signup_form form input[type=submit]{
+        width: 20vw;
+    }
+    /* ###################### DASHBOARD MAIN ACCOUNT ############################# */
+    .account{
+        overflow: auto;
+    }
+    .account .left_control{
+        position: sticky;
+        top: 0;
+        width: 30vw;
+    }
+    .account .left_control .Client_Name{
+        font-size: 1em;
+    }
+    .account .left_control h2{
+        font-size: 15px;
+        padding: 13.5px 22px;
+        display: flex;
+        flex-direction: column;
+    }
+    .account .right_control{
+        overflow: auto;
+        height: 100vh;
+    }
+    .account .right_control .first{
+        flex-direction: column;
+        align-items: center;
+    }
+    .account .right_control .first div{
+        margin: 5px;
+        width: 80%;
+        border-radius: 5px;
+    }
+    .account .right_control .second{
+        width: 80%;
+        padding: 10px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .account .right_control .second table{
+        display: flex;
+    }
+    .account .right_control .second table tr th{
+        display: block;
+        background-color: transparent;
+        margin-right: 20px;
+    }
+    .account .right_control .second table tr td{
+        display: block;
+        margin: 34px 0;
+        padding: 4px 5px;
+        width: auto;
+        background-color: pink;
+    }
+    .deposit h1{
+        font-size: 25px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .deposit .first{
+        flex-direction: column;
+        align-items: center;
+    }
+    .deposit .first div{
+        width: 80%;
+        height: 50vh;
+    }
+    .deposit .first div h3, .deposit .first div h4, .deposit .first div h5{
+        margin: 12px;
+    }
+    .deposit .first div h2{
+        font-size: 18px;
+    }
+    .deposit .first div h2 span{
+        font-size: 15px;
+    }
+    .deposit .second button{
+        width: 15vw;
+        font-size: 15px;
+    }
+    .referral h1{
+        font-size: 25px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .referral .first{
+        display: grid;
+        grid-template-columns: auto auto;
+        width: auto;
+    }
+    .referral .first div{
+        width: 33vw;
+        padding: 35px 25px;
+        border-radius: 10px;
+    }
+    .referral .first div h3{
+        font-size: 20px;
+    }
+    .referral .first div h6{
+        font-size: 15px;
+    }
+    .referral_link h1{
+        font-size: 25px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .withdraw{
+        overflow: auto;
+    }
+    .withdraw h1{
+        font-size: 25px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .withdraw .first{
+        margin-bottom: 40px;
+        border-radius: 5px;
+    }
+    .withdraw .first .pend{
+        grid-template-columns: 65% 35%;
+    }
+    .withdraw .first .pend h2{
+        font-size: 15px;
+    }
+    .withdraw .first .pend span{
+        font-size: 12px;
+    }
+    .withdraw .second{
+        display: flex;
+        flex-direction: column;
+    }
+    .withdraw .second div h3{
+        font-size: 12px;
+    }
+    .withdraw button{
+        font-size: 15px;
+    }
+    .edit_account h1{
+        font-size: 25px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .edit_account{
+        overflow: auto;
+    }
+    .edit_account .first{
+        display: flex;
+        flex-direction: column;
+    }
+    .edit_account .first div{
+        width: 100%;
+        margin: 15px 0;
+    }
+    .edit_account .first div h2{
+        font-size: 15px;
+    }
+    .edit_account .first div h5{
+        font-size: 15px;
+    }
+    .edit_account .second{
+        margin-bottom: 15px;
+    }
+    .edit_account .second form{
+        margin: 15px 0;
+    }
+    .edit_account .second form input[type=submit]{
+        width: 50vw;
+        margin: 10px 0;
+    }
+    .security h1, .reset_pwd h1{
+        font-size: 20px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .security .first{
+        display: flex;
+        flex-direction: column;
+    }
+    .security .first div{
+        width: 50vw;
+        margin: 15px 0;
+    }
+    .security .first div h2,.security .first div h5{
+        font-size: 15px;
+    }
+    .security .second form input[type=submit]{
+        width: 50vw;
+        margin: 10px 0;
+    }
+    .security .second button{
+        width: 50vw;
+        font-size: 15px;
+    }
+}

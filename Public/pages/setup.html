@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="images/x-icon" href="../images/icons/x-icon.png">
+    <link rel="stylesheet" href="../styles/fontawesome-free-5.13.0-web/css/all.css">
+    <link rel="icon" type="image/x-icon" href="./images/x-icon.png">
+    <link rel="stylesheet" href="../styles/css/main.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <title>Deposit Confirmation Form</title>
+</head>
+<body>
+<div class="big-container">
+    <div class="reset_pwd setup">
+        <h1 style="text-align: center;">SET UP ACCOUNT</h1>
+        <div class="second">
+            <form method="POST">
+                <label>Full Name:</label>
+                <input type="text" id="fullname" placeholder="Full Name" required>
+                <label>Date of Birth:</label>
+                <input type="date" id="dob" placeholder="DOB">
+                <label>Nationality:</label>
+                <input type="text" id="nation" placeholder="Country" required>
+                <label>City:</label>
+                <input type="text" id="city" placeholder="State/Province" required>
+                <label>Referral Key (if any):</label>
+                <input type="text" id="refkey" placeholder="(Optional)" >
+                <input type="submit" value="FINISH" id="finish">
+                <span class="notify set_note"></span>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/main.js"></script>
+</body>
+</html>

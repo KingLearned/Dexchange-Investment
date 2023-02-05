@@ -1,0 +1,1422 @@
+*{
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    transition: 0.3s;
+}
+a{
+    text-decoration: none;
+}
+@font-face {
+    font-family: 'robot-regular';
+    src: url('../fonts/Roboto-Medium.ttf');
+}
+@font-face {
+    font-family: 'robot-thin';
+    src: url('../fonts/Roboto-Thin.ttf');
+}
+@font-face {
+    font-family: 'robot-block';
+    src: url('../fonts/Roboto-Bold.ttf');
+}
+@font-face {
+    font-family: 'bebas';
+    src: url('../fonts/Bebas-Neue-Regular.ttf');
+}
+@font-face {
+    font-family: 'playfair';
+    src: url('../fonts/Playfair-Regular.ttf');
+}
+.big-container{
+    height: auto;
+    width: auto;
+    background-color: aliceblue;
+}
+/* ###################### LOGIN FORM ############################# */
+.login_form{
+    /* position: absolute; */
+    z-index: 10;
+    width:100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* background-color: rgba(0, 0, 0, .504); */
+    color: white;
+    /* transform: scale(0); */
+}
+.login_form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 50vw;
+    height: 80vh;
+    background-color: rgb(33, 48, 54);
+}
+.login_form form img{
+    width: 20%;
+    height: 20%;
+    margin: 0 0 20px 0;
+}
+.login_form h2{
+    color: white;
+    font: 500 2.3vw robot-regular;
+    margin: 0 10px;
+}
+.login_form form h3{
+    display: flex;
+    align-items: center;
+    margin: 15px 0 0 0;
+}
+.login_form form span{
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    font: 500 20px oswald;
+    color: gray;
+}
+.login_form form h3 i{
+    border: 1px solid white;
+    width: 50px;
+    height: 50px;
+    padding: 5px 0;
+    margin: -25px 0 0 0;
+    text-align: center;
+    font-size: 40px;
+}
+.login_form form input{
+    height: 50px;
+    padding: 10px;
+    font: 500 18px oswald;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    outline: none;
+    width: 30vw;
+    border: 1px solid white;
+}
+.login_form form input[type=submit]{
+    margin: 10px 0;
+    width: 10vw;
+    cursor: pointer;
+    font-weight: bolder;
+}
+.login_form form input[type=submit]:hover{
+    color: gray;
+}
+
+/* #################### SIGN UP ################################### */
+.signup_form{
+    /* position: absolute; */
+    z-index: 10;
+    width:100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* background-color: rgba(0, 0, 0, .504); */
+    color: white;
+    /* transform: scale(0); */
+}
+.signup_form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 50vw;
+    height: 85vh;
+    background-color: rgb(33, 48, 54);
+}
+.signup_form form img{
+    width: 15%;
+    height: 15%;
+    margin: 0 0 20px 0;
+}
+.signup_form h2{
+    color: white;
+    font: 500 2.3vw robot-regular;
+    margin: 0 10px;
+}
+.signup_form form h3{
+    display: flex;
+    align-items: center;
+    margin: 5px 0 0 0;
+}
+.signup_form form span{
+    height: 30px;
+    width: 100%;
+    text-align: center;
+    font: 500 20px oswald;
+    color: gray;
+}
+.signup_form form h3 i{
+    border: 1px solid white;
+    width: 50px;
+    height: 40px;
+    padding: 5px 0;
+    margin: -25px 0 0 0;
+    text-align: center;
+    font-size: 30px;
+}
+.signup_form form input{
+    height: 40px;
+    padding: 10px;
+    font: 500 18px oswald;
+    letter-spacing: 2px;
+    outline: none;
+    width: 30vw;
+    border: 1px solid white;
+}
+.signup_form form input[type=submit]{
+    margin: 10px 0;
+    width: 10vw;
+    height: 40px;
+    padding: 0 0 3px 0;
+    cursor: pointer;
+    font-weight: bolder;
+}
+.signup_form form input[type=submit]:hover{
+    color: gray;
+}
+
+/* #################### CONTACT ################################### */
+.contact_form{
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contact_form h1{
+    font: 900 38px robot-regular;
+    color: rgb(255, 196, 0);
+    text-align: center;
+    margin: 35px 0 0 0;
+}
+.contact_form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    height: 85vh;
+    /* background-color: rgb(33, 48, 54); */
+}
+.contact_form form input{
+    height: 40px;
+    padding: 10px;
+    margin: 10px 0 0 0;
+    font: 500 18px playfair;
+    letter-spacing: 2px;
+    outline: none;
+    width: 50vw;
+    border: 1px solid gainsboro;
+}
+.contact_form form textarea{
+    height: 35vh;
+    padding: 10px;
+    margin: 10px 0;
+    font: 500 18px playfair;
+    letter-spacing: 2px;
+    outline: transparent;
+    width: 50vw;
+    border: 1px solid gainsboro;
+    resize: none;
+}
+.contact_form form textarea:focus, .contact_form form input:focus{
+    border: 1px solid rgb(33, 48, 54);
+}
+.contact_form form input[type=submit]{
+    margin: 10px 0;
+    height: auto;
+    width: auto;
+    cursor: pointer;
+    font-weight: bolder;
+    border: 1px solid black;
+}
+.contact_form form input[type=submit]:hover{
+    background-color: gray;
+}
+
+
+/* ################################################# */
+.top-menu{
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    background-color: black;
+    padding: 5px 10px;
+}
+.top-menu .logo-cover img{
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+}
+.top-menu button{
+    display: none;
+}
+.nav-cover{
+    position: absolute;
+    right: 10px;
+    top: 3.2vh;
+}
+.nav-cover a{
+    color: white;
+    font: 500 18px robot-regular;
+    margin: 0 10px;
+}
+.nav-cover a:hover{
+    color: rgb(23, 230, 245);
+}
+/* ############################ SLIDE SIDE ################### */
+.bg-slide .blend{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.475);
+    z-index: 1;
+}
+.bg-slide{
+    position: relative;
+    overflow: hidden;
+    height: 90vh;
+    width: 100%;
+    background-size: 100% 100%;
+}
+.bg-slide a{
+    position: absolute;
+    right: 100px;
+    z-index: 1;
+    color: white;
+    font: bolder 18px robot-thin;
+    border: 1px solid white;
+    padding: 15px 10px;
+    top: 53%;
+    border-radius: 10px;
+    box-shadow: 1px 1px 4px black;
+}
+.bg-slide a:hover{
+    box-shadow: 1px 1px 4px rgb(23, 230, 245);
+    border: 1px solid rgb(23, 230, 245);
+    color: rgb(23, 230, 245);
+}
+.pix-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.pix-img img{
+    height: 100%;
+    width: 100%;
+}
+.slide-content{
+    position: absolute;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 0 10px;
+    margin: 0 0 0 35px !important;
+    z-index: 1;
+}
+.slide-content h1{
+    font: bold 70px bebas;
+    color: white;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px black;
+    padding: 0 10px;
+    border-left: 8px solid rgb(23, 230, 245);
+}
+/* ################################################### */
+.intro{
+    height: 80vh;
+    padding-top: 50px;
+}
+.intro h1{
+    font: 900 35px robot-thin;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.intro .intro-content{
+    display: flex;
+    justify-content: center;
+}
+.intro .intro-content div{
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 40vh;
+    background-color: gray;
+    margin: 0 5px;
+    font-family: robot-regular;
+}
+.intro .intro-content div img{
+    width: 50%;
+    height: 50%;
+    margin-bottom: 20px;
+}
+/* ######################################################### */
+.we_do{
+    height: 80vh;
+}
+.we_do h1{
+    font: 900 35px robot-thin;
+    text-align: center;
+    margin-bottom: 60px;
+}
+.we_do .content{
+    display: flex;
+    justify-content: center;
+}
+.we_do .content div{
+    background-color: skyblue;
+    margin: 0 10px;
+    width: 40%;
+    text-align: justify;
+    font:900 18px robot-thin;
+    padding: 20px;
+    border-radius: 5px;
+    cursor:default;
+}
+.we_do .content div:nth-child(2){
+    background-color: rgb(3, 24, 32);
+    color: white;
+}
+.we_do .content div h2{
+    font: 500 25px robot-regular;
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* ################################################## */
+.steps{
+    height: 80vh;
+}
+.steps h3{
+    font: 700 20px playfair;
+    text-align: center;
+    color: rgb(177, 187, 196);
+    letter-spacing: 10px;
+    margin-bottom: 30px;
+}
+.steps h1{
+    font: 900 40px bebas;
+    text-align: center;
+    margin-bottom: 60px;
+}
+.steps .content{
+    display: flex;
+    justify-content: center;
+}
+.steps .content div{
+    background-color: white;
+    box-shadow: 1px 1px 4px black;
+    margin: 0 10px;
+    width: 30%;
+    height: 40vh;
+    text-align: center;
+    font:900 20px robot-thin;
+    padding: 50px;
+    border-radius: 5px;
+    cursor:default;
+}
+.steps .content div:nth-child(2){
+    background-color: skyblue;
+    color: white;
+}
+.steps .content div h2{
+    font: 500 25px robot-regular;
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* ################################################ */
+.about{
+    height: 80vh;
+    display: flex;
+}
+.about div{
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+.about div img{
+    width: 100%;
+    height: 100%;
+}
+.about div h1{
+    font: 100 40px robot-block;
+    letter-spacing: 5px;
+    margin: 0 0 20px 0;
+    color: skyblue;
+}
+.about div p{
+    text-align: justify;
+    margin-bottom:15px;
+    font: 100 20px playfair; 
+}
+/* #################################################### */
+.trade{
+    height: 90vh;
+    margin-top: 50px;
+}
+.trade h3{
+    font: 700 20px playfair;
+    text-align: center;
+    color: rgb(177, 187, 196);
+    letter-spacing: 10px;
+    margin: 30px 0;
+}
+.trade h1{
+    font: 900 40px bebas;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.trade .content{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    justify-content: center;
+}
+.trade .content div{
+    background-color: white;
+    margin: 10px;
+    height: 30vh;
+    text-align: center;
+    font:900 1vw robot-thin;
+    padding: 30px;
+    border-radius: 5px;
+    cursor:default;
+}
+.trade .content div h4{
+    font: 500 2vw robot-regular;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+}
+/* ############################################## */
+
+/* #####################  STATATICS SECTION  ######################### */
+.stat{
+    height: 90vh;
+    /* background-color: red; */
+    background-image: url('../../images/bg-slide/bg-9.jpg');
+    display: flex;
+}
+.stat article{
+    /* background-color: navy; */
+    margin: 5px;
+    width: 100%;
+    height: 100%;
+}
+.stat .row-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stat .row-1 img{
+    width: 250px;
+    height: 50%;
+}
+.stat .row-1 img:hover{
+    transform: translateY(10px);
+}
+.stat .row-2 h1{
+    font: 900 5vw bebas;
+    text-align: right;
+    letter-spacing: 5px;
+    color: skyblue;
+}
+.stat .row-2 .content{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 50px 0;
+    margin: 20px 0 0 0;
+}
+.stat .row-2 .content h2{
+    font: 900 3.5vw robot-regular;
+    color: skyblue;
+}
+.stat .row-2 .content h3{
+    font: 900 15px robot-regular;
+    color: white;
+}
+
+/* ################################################################# */
+
+/* #####################  PICK A PLAN  ######################### */
+/* #####################  PICK A PLAN  ######################### */
+.plan{
+    height: 90vh;
+}
+.plan h1{
+    font: 900 40px bebas;
+    text-align: center;
+    margin: 30px 0;
+}
+.plan .content{
+    display: flex;
+    justify-content: center;
+}
+.plan .content div{
+    width: 23%;
+    height: 70vh;
+    margin: 10px;
+    padding: 5px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(4, 4, 26);
+}
+.plan .content div h2{
+    font: 900 25px bebas;
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(4, 4, 26, 0.901);
+    color: red;
+}
+.plan .content div h3{
+    font: 100 25px robot-regular;
+    text-align: center;
+    font-style: italic;
+    padding: 12.5px;
+    background-color: skyblue;
+}
+.plan .content div h3:nth-child(7){
+    background-color: white;
+    color: rgba(4, 4, 26, 0.901);
+}
+.plan .content div h4{
+    text-align: center;
+    font-size: 25px;
+    padding: 5px;
+}
+.plan .content .select{
+    padding: 20px;
+}
+.plan .content .select a{
+    background-color: rgb(16, 160, 218);
+    color: white;
+    padding: 5px 20px;
+} 
+.plan .content .select a:hover{
+    background-color: rgb(70, 200, 252);
+}
+/* ############################################## */
+
+
+
+/* ####################### FOOTER SIDE ################################### */
+.footer_side{
+    height: 90vh;
+    background-image: url('../../images/bg-slide/footer-bg.jpg');
+    background-size: cover;
+    color: white;
+    padding: 30px 0 0 0;
+}
+.footer_side h1{
+    font: 900 40px bebas;
+    margin: 0 0 30px 70px;
+}
+.footer_side .col-1{
+    display: flex;
+    margin: 0 0 0 70px;
+}
+.footer_side .col-1 div{
+    border: 1px solid white;
+    margin: 0 5px 0 0;
+    padding: 10px;
+    width: 15vw;
+}
+.footer_side .col-1 div h2{
+    font: 500 20px robot-regular;
+    text-transform: uppercase;
+    text-align: center;
+}
+.footer_side .col-1 div p{
+    font: 500 15px playfair;
+    text-align: center;
+}
+.footer_side .col-2{
+    /* background-color: white; */
+    height: 46.5vh;
+    width: 300px;
+}
+.footer_side .copywrite{
+    font: 900 20px bebas;
+    padding: 20px 0 0 70px;
+    border-top: 1px solid white;
+    /* background-color: yellowgreen; */
+}
+
+/* #####################  ACCOUNT SECTION  ######################### */
+/* #####################  ACCOUNT SECTION  ######################### */
+.account{
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+.account h1 img{
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+}
+.account h1{
+    background-color: black;
+}
+.account .left_control{
+    background-color: rgba(1, 1, 22, 0.829);
+    width: 20vw;
+}
+.account .left_control h2{
+    font: 500 1.5vw bebas;
+    color: white;
+    padding: 19px 30px;
+    cursor: pointer;
+}
+.account .left_control h2 i{
+    margin: 0 10px 0 0;
+}
+.account .left_control h2:hover{
+    background-color: rgba(1, 1, 22);
+    color: gold;
+}
+.account .left_control h2:nth-child(2):hover{
+    color: white;
+    background-color: transparent;
+    cursor: auto;
+}
+/* #####################  MAIN ACCOUNT SECTION  ######################### */
+.account .right_control{
+    background-color: gainsboro;
+    /* background-image: url('../../images/bg-slide/footer-bg.jpg'); */
+    width: 100%;
+    display: flex; /*Modified it to flex*/
+    flex-direction: column;
+}
+.account .right_control .first{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: oswald;
+    color: white;
+    text-align: center;
+    /* height: 10vh; */
+    margin: 50px 0 0 0;
+    /* background-color: white; */
+}
+.account .right_control .first div{
+    background-image: linear-gradient(to top, rgb(255, 0, 212), rgb(202, 5, 54));
+    margin: 5px;
+    width: 22%;
+    height: 40vh;
+    border-radius: 5px;
+}
+.account .right_control .first div:nth-child(2){
+    background-image: linear-gradient(to top, rgb(0, 255, 64), rgb(38, 202, 5));
+}
+.account .right_control .first div:nth-child(3){
+    background-image: linear-gradient(to top, rgb(0, 47, 255), rgb(5, 173, 202));
+}
+.account .right_control .first div:nth-child(4){
+    background-image: linear-gradient(to top, rgb(255, 0, 0), rgb(202, 5, 31));
+}
+.account .right_control .first div h3{
+    font-size: 30px;
+    padding: 10px 0;
+    border-bottom: 1px solid white;
+}
+.account .right_control .first div h2{
+    font-size: 25px;
+    padding: 15px 0;
+}
+.account .right_control .second{
+    width: 97%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: oswald;
+    background-color: white;
+    margin: auto;
+    border-radius: 10px;
+}
+.account .right_control .second h2{
+    font-size: 3vw;
+    padding: 15px 0;
+}
+.account .right_control .second table td{
+    padding: 20px 34px;
+}
+.account .right_control .second table th{
+    text-align: left;
+    background-color: rgb(24, 166, 223);
+    padding: 10px 34px;
+}
+/* #####################  DEPOSIT SECTION  ######################### */
+/* #####################  DEPOSIT SECTION  ######################### */
+.deposit{
+    display: none;/*Modified it to flex*/
+    flex-direction: column;
+    align-items: center;
+    background-color: gainsboro;
+    width: 100%;
+    font-family: oswald;
+    height: 100%;
+    overflow: auto;
+}
+.deposit h1{
+    font-size: 2.5vw;
+    margin: 30px 0;
+    padding: 10px;
+    background-color: white;
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px white;
+}
+.deposit .first{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+}
+.deposit .first div{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+    border-radius: 10px;
+    margin: 15px;
+    overflow: hidden;
+    cursor: default;
+}
+.deposit .first div h2{
+    font-size: 2vw;
+    background-color: rgba(1, 1, 22);
+    text-align: center;
+    width: 100%;
+    color: white;
+    padding: 45px 0;
+}
+.deposit .first div h2 span{
+    font-size: 15px;
+    color: aqua;
+}
+.deposit .first div h3, .deposit .first div h4, .deposit .first div h5{
+    margin: 17px;
+}
+.deposit .second{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 50vw;
+    margin: 0 0 25px 0;
+}
+.deposit .second select, input{
+    width: 100%;
+    outline: none;
+    padding: 10px;
+    margin: 0 0 25px 0;
+    font-family: oswald;
+    border: 1px solid black;
+}
+.deposit .second h5{
+    padding: 10px;
+    border: 1px solid black;
+    text-align: left;
+    width: 100%;
+    margin: 0 0 25px 0;
+    background-color: white;
+    cursor: not-allowed;
+}
+.deposit .second button{
+    width: 10vw;
+    padding: 10px;
+    background-color: skyblue;
+    border: 1px solid transparent;
+    font: 500 1.3vw oswald;
+    align-self: flex-end;
+    border-radius: 5px;
+}
+.deposit .second button:hover{
+    cursor: pointer;
+    background-color: gold;
+}
+/* #####################  REFERRALS SECTION  ######################### */
+/* #####################  REFERRALS SECTION  ######################### */
+.referral{
+    display: none; /*Modified it to flex*/
+    flex-direction: column;
+    align-items: center;
+    background-color: gainsboro;
+    width: 100%;
+    font-family: oswald;
+    /* height: 100%;
+    overflow: auto; */
+}
+.referral h1{
+    font-size: 2.5vw;
+    margin: 70px 0 0 0;
+    padding: 10px;
+    background-color: white;
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px white;
+    cursor: default;
+}
+.referral .first{
+    display: flex;
+    margin: 50px 0 0 0;
+    width: 75vw;
+}
+.referral .first div{
+    width: 25%;
+    background-color: white;
+    margin: 5px;
+    padding: 55px;
+    cursor: default;
+}
+.referral .first div h3{
+    font-size: 1.5vw;
+    margin: 0 0 15px 0;
+}
+.referral .first div h6{
+    font-size: 1vw;
+}
+/* #####################  REFERRAL LINK SECTION  ######################### */
+/* #####################  REFERRAL LINK SECTION  ######################### */
+.referral_link{
+    display: none; /*Modified it to flex*/
+    flex-direction: column;
+    align-items: center;
+    background-color: gainsboro;
+    width: 100%;
+    font-family: oswald;
+}
+.referral_link h1{
+    font-size: 2.5vw;
+    margin: 70px 0;
+    padding: 10px;
+    background-color: white;
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px white;
+    cursor: default;
+}
+.referral_link div{
+    width: 90%;
+}
+.referral_link div h2{
+    font-weight: 400;
+}
+.referral_link div h2:nth-child(2){
+    font-size: 20px;
+    border: 1px solid black;
+    padding: 10px;
+    width: 50vw;
+    background-color: white;
+    margin: 25px 0;
+    font-weight: 100;
+}
+.referral_link div button{
+    padding: 15px 10px;
+    font-weight: 900;
+    color: white;
+    background-color: rgb(88, 224, 88);
+    border: transparent;
+    cursor: pointer;
+}
+.referral_link div button:hover{
+    background-color: rgb(88, 204, 70);
+}
+/* #####################  WITHDRAWAL SECTION  ######################### */
+/* #####################  WITHDRAWAL SECTION  ######################### */
+.withdraw{
+    display: none; /*Modified it to flex*/
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    background-color: gainsboro;
+    width: 100%;
+    font-family: oswald;
+    /* height: 100%;
+    overflow: auto; */
+}
+.withdraw h1{
+    font-size: 2.5vw;
+    margin: 50px 0;
+    padding: 10px;
+    background-color: white;
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px white;
+    cursor: default;
+}
+.withdraw .first{
+    width: 90%;
+    background-color: white;
+    padding: 100px 25px 25px 25px;
+}
+.withdraw .first .pend{
+    display: grid;
+    grid-template-columns: 75% 25%;
+    border: 1px solid rgb(112, 110, 110);
+}
+.withdraw .first .pend h2{
+    font-size: 1vw; 
+    padding: 10px 15px;
+    background-color: gainsboro;
+}
+.withdraw .first .pend h2:nth-child(3){
+    background-color: white;
+    border-top: 1px solid rgb(112, 110, 110);
+}
+.withdraw .first .pend span{
+    padding: 10px 0 0 20px;
+    font-size: 1vw; 
+    background-color: gainsboro;
+    border-left: 1px solid rgb(112, 110, 110);
+}
+.withdraw .first .pend span:nth-child(4){
+    border-top: 1px solid rgb(112, 110, 110);
+    background-color: white;
+}
+.withdraw .first h3{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+.withdraw .first h4{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+.withdraw .second{
+    display: grid;
+    grid-template-columns: 20% 20% 20% 40%;
+    margin: 0 0 35px 0;
+    border-bottom: 1px solid rgb(112, 110, 110);
+    border-left: 1px solid rgb(112, 110, 110);
+}
+.withdraw .second div h3{
+    font-size: 1.3vw;
+    background-color: aqua;
+    padding: 10px;
+}
+.withdraw .second div h4{
+    font-size: 15px;
+    font-weight: 300;
+    padding: 10px;
+    border-right: 1px solid rgb(112, 110, 110);
+}
+.withdraw .second .avail{
+    color: green;
+}
+.withdraw .second .proc{
+    color: red;
+}
+.withdraw button{
+    padding: 15px;
+    border: transparent;
+    background-color: gold;
+    margin: 20px 0 0 0;
+    font: 900 1.2vw oswald;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.withdraw button:hover{
+    background-color: greenyellow;
+}
+/* ############### WITHDRAWAL FORM ####################### */
+.withdraw .withdraw_form{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.475);
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    display: none; /*Modify to flex*/
+    justify-content: center;
+    align-items: center;
+}
+.withdraw .withdraw_form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    color: white;
+}
+.withdraw .withdraw_form form h4{
+    color: gold;
+    cursor: not-allowed;
+    letter-spacing: 1px;
+}
+.withdraw .withdraw_form form h3{
+    color: red;
+    text-shadow: 1px 1px 4px black;
+    cursor: default;
+    margin: 15px;
+}
+.withdraw .withdraw_form form input[type=submit]{
+    background-color: greenyellow;
+    border: transparent;
+    cursor: pointer;
+    width: 10vw;
+    font: 900 1vw oswald;
+    margin: 15px 0;
+}
+.withdraw .withdraw_form .close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 15px;
+    background-color: red;
+    font-size: 25px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+/* #####################  EDIT ACCOUNT SECTION  ######################### */
+/* #####################  EDIT ACCOUNT SECTION  ######################### */
+.edit_account{
+    display: none; /*Modified it to flex*/
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    background-color: gainsboro;
+    width: 100%;
+    font-family: oswald;
+    /* height: 100%;
+    overflow: auto; */
+}
+.edit_account h1{
+    font-size: 2.5vw;
+    margin: 50px 0;
+    padding: 10px;
+    background-color: white;
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px white;
+    cursor: default;
+}
+.edit_account .first{
+    display: grid;
+    grid-template-columns: 20vw 20vw 40vw
+}
+.edit_account .first div{
+    background-color: white;
+    margin: 0 15px;
+    padding: 25px 15px;
+    border-radius: 5px;
+    cursor: default;
+}
+.edit_account .first div h2{
+    font: 900 1.5vw oswald;
+}
+.edit_account .first div h5{
+    font: 300 1.5vw oswald;
+}
+.edit_account .second form{
+    display: flex;
+    flex-direction: column;
+    margin: 100px 0 0 0;
+}
+.edit_account .second form input{
+    width: 50vw;
+    margin: 10px 0;
+}
+.edit_account .second form input[type=submit]{
+    width: 10vw;
+    background-color: yellowgreen;
+    border: transparent;
+    font-weight: 900;
+    cursor: pointer;
+}
+.edit_account .second form input[type=submit]:hover{
+    background-color: rgb(97, 141, 10);
+}
+/* #####################  SECURITY SECTION  ######################### */
+/* #####################  SECURITY SECTION  ######################### */
+.security,.reset_pwd{
+    display: none; /*Modified it to flex*/
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    background-color: gainsboro;
+    width: 100%;
+    font-family: oswald;
+    height: 100vh;
+    overflow: auto;
+}
+.reset_pwd{
+    display: flex;
+}
+.security h1, .reset_pwd h1{
+    font-size: 2.5vw;
+    margin: 50px 0;
+    padding: 10px;
+    background-color: white;
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px white;
+    cursor: default;
+}
+.security .first{
+    display: grid;
+    grid-template-columns: 20vw 20vw 40vw
+}
+.security .first div{
+    background-color: white;
+    margin: 0 15px;
+    padding: 25px 15px;
+    border-radius: 5px;
+    cursor: default;
+}
+.security .first div h2{
+    font: 900 1.5vw oswald;
+}
+.security .first div h5{
+    font: 300 1.5vw oswald;
+}
+.security .second{
+    margin-bottom: 50px;
+    /* width: 100%; */
+}
+.security .second form{
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0 0 0;
+}
+.security .second form input{
+    width: 50vw;
+    margin: 10px 0;
+}
+.security .second form input[type=submit]{
+    width: 10vw;
+    background-color: yellowgreen;
+    border: transparent;
+    font-weight: 900;
+    cursor: pointer;
+}
+.security .second form input[type=submit]:hover{
+    background-color: rgb(97, 141, 10);
+}
+.security .second form span{
+    font-weight: 500;
+    color: red;
+    margin: 5px 0;
+}
+.security .second button{
+    width: 12vw;
+    padding: 10px 15px;
+    margin: 15px 0;
+    background-color: red;
+    border: transparent;
+    font: 900 1vw oswald;
+    cursor: pointer;
+}
+/* #################### REST PASSWORD SECTION ######################### */
+.reset_pwd .second form{
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0 0 0;
+}
+.reset_pwd .second form input{
+    width: 50vw;
+    margin: 10px 0;
+}
+.reset_pwd .second form input[type=submit]{
+    width: 120px;
+    background-color: yellowgreen;
+    border: transparent;
+    font-weight: 900;
+    cursor: pointer;
+}
+.reset_pwd .second form input[type=submit]:hover{
+    background-color: rgb(97, 141, 10);
+}
+.reset_pwd .notify{
+    margin: 15px 0 0 0;
+    color: red;
+    font-weight: 900;
+}
+
+/* #################### DEPOSIT ROUTE SECTION ######################### */
+/* #################### DEPOSIT ROUTE SECTION ######################### */
+.deposit_confirm .second form{
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0 0 0;
+}
+.deposit_confirm .second form input{
+    width: 50vw;
+    margin: 10px 0;
+}
+.deposit_confirm .second form input[type=submit]{
+    width: 120px;
+    background-color: yellowgreen;
+    border: transparent;
+    font-weight: 900;
+    cursor: pointer;
+}
+.deposit_confirm .second form input[type=submit]:hover{
+    background-color: rgb(97, 141, 10);
+}
+.deposit_confirm .notify{
+    margin: 15px 0 0 0;
+    color: red;
+    font-weight: 900;
+}
+/* #################### SETUP ACCOUNT SECTION ######################### */
+/* #################### SETUP ACCOUNT SECTION ######################### */
+.setup h1{
+    font-size: 2.5vw;
+    margin: 50px 0 0 0;
+    padding: 10px;
+    background-color: white;
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px white;
+    cursor: default;
+}
+.setup .second form{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 50px 0;
+}
+.setup .second form input{
+    width: 50vw;
+    margin: 10px 0;
+}
+.setup .second form input[type=submit]{
+    width: 120px;
+    background-color: yellowgreen;
+    border: transparent;
+    font-weight: 900;
+    cursor: pointer;
+}
+.setup .second form input[type=submit]:hover{
+    background-color: rgb(97, 141, 10);
+}
+.setup .notify{
+    margin: 15px 0 0 0;
+    color: red;
+    font-weight: 900;
+}
+
+
+/* #################### ADMINISTRATION PANEL ######################### */
+/* #################### ADMINISTRATION PANEL ######################### */
+.container{
+    height: 100vh;
+    width: 100vw;
+    background-color: gainsboro;
+}
+.container .head h1{
+    text-align: center;
+    font: bold 2vw roboto;
+    background-color: rgb(54, 53, 53);
+    color: white;
+    padding: 15px 0;
+    text-transform: uppercase;
+}
+.manager .main{
+    border: 1px solid gray;
+    padding: 5px 0;
+}
+.manager .main h1{
+    background-color: white;
+    box-shadow: 1px 1px 4px black;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.manager div{
+    display: flex;
+    font-family: bebas;
+    background-color: aliceblue;
+    font-size: 1vw;
+    margin: 5px 0;
+}
+.manager div h1{
+    margin: 0 5px;
+    padding: 0 20px;
+
+}
+.manager div .no{
+    width: 5vw;
+}
+.manager div .users{
+    width: 15vw;
+}
+.manager div .withdraw_amt,.manager div .balance{
+    width: 15vw;
+}
+.manager div .ramt{
+    color: red;
+}
+.manager div .date{
+    width: 20vw;
+}
+.manager .action{
+    width: 15vw;
+}
+.manager div .approve,.manager div .reject{
+    background-color: rgb(50, 241, 50);
+    width: 15vw;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.manager div .reject{
+    background-color: rgb(240, 48, 48);
+}
+.manager div .reject:hover{
+    background-color: lightcoral;
+}
+.manager div .approve:hover{
+    background-color: lightgreen;
+}
+.manager .req{
+    width: 100vw;
+}
+.req{
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 0 4px black;
+    border-radius: 5px;
+}
+
+.cover{
+    position: absolute;
+    top: 2vh;
+    right: 10px;
+    width: 35px;
+    height: 45px;
+}
+.cover i{
+    font-size: 25px;
+    color: white;
+}
+.cover h4{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    font-family: bebas;
+    font-size: 18px;
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+}

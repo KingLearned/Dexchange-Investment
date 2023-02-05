@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="images/x-icon" href="../images/icons/x-icon.png">
+    <link rel="stylesheet" href="../styles/fontawesome-free-5.13.0-web/css/all.css">
+    <link rel="icon" type="image/x-icon" href="./images/x-icon.png">
+    <link rel="stylesheet" href="../styles/css/main.css">
+    <link rel="stylesheet" href="../styles/css/query.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <title>De Xchange</title>
+</head>
+<body>
+<div class="big-container" id="home">
+    <div class="top-menu">
+        <div class="logo-cover">
+            <img src="../images/icons/logo.png" alt="">
+        </div>
+        <div class="nav-cover">
+            <span><a href="/">HOME</a></span>
+            <span><a href="/about-us">ABOUT</a></span>
+            <span><a href="">FAQ</a></span>
+            <span><a href="/contact">CONTACT</a></span>
+            <span><a href="">TERMS</a></span>
+            <span><a href="/login">LOGIN</a></span>
+        </div>
+        <button onclick="Toggle()">III</button>
+    </div>
+
+    <div class="signup_form">
+        <form method="POST">
+            <img src="../images/icons/x-icon.png" alt="logo">
+            <h2>SIGNUP</h2>
+            <!-- <input type="text" name="new_client_username" placeholder="Username" required> -->
+            <h3><i class="fa fa-user"></i><input type="text" id="new_client_username" placeholder="username" required></h3>
+            <h3><i class="fa fa-envelope"></i><input type="email" id="new_client_email" placeholder="email" required></h3>
+            <h3><i class="fa fa-key"></i><input type="password" id="new_client_pwd" placeholder="password" required></h3>
+            <h3><i class="fa fa-lock"></i><input type="password" id="new_client_cpwd" placeholder="confirm password" required></h3>
+            <input type="submit" value="SIGN UP" class="sub">
+            <span id="out"></span>
+        </form>
+    </div>
+
+    <div class="footer_side">
+        <h1><span style="border-bottom: 3px solid skyblue;">DE-XC</span>HANGE</h1>
+        <div class="col-1">
+            <div>
+                <h2>ADDRESS:</h2>
+                <p>wroclaw Poland, 507-123</p>
+            </div>
+            <div>
+                <h2>EMAIL:</h2>
+                <p>info@dexchange.org</p>
+            </div>
+            <div>
+                <h2>TELE:</h2>
+                <p>+157-125-102 <br> +157-967-038</p>
+            </div>
+        </div>
+        <div class="col-2"></div>
+        <h6 class="copywrite">© 2022 De-Xchange.org. All Rights Reserved.</h6>
+    </div>
+</div>
+<script type="text/javascript" src="../js/login-signup.js"></script>
+</body>
+</html>
