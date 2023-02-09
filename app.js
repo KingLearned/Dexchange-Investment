@@ -639,35 +639,36 @@ app.post('/Client-Account', UserOut, (req,res) =>{
             res.redirect('/Client-Deposit-Confirmation')
 
         }else if(Withdraw) {
-        //################ WITHDRAWAL HANDLER ######################//
+        //****************  WITHDRAWAL HANDLER  ****************//
             if(Withdraw >= 10){
                 const query = "SELECT * FROM `users` WHERE `username`=? LIMIT 1"
                 MYSQL.query(query, [client], (err, result) => {
                     if(result[0].wallet_no == ''){ //for wallet address
+
                         res.json({Notify: 'No Wallet Address Avaliable!'})
                     }else if(Number(Number(Withdraw).toFixed(2)) >= Number(Number(result[0].balance).toFixed(2))){ //for balance check
                         res.json({Notify: 'Amount Must Be < Current Balance!'})
+
                     }else if(result[0].pend_withdraw !== 0){ //for pending withdrawals
+
                         res.json({Notify: 'A Withdrawal Is Still In Process!'})
                     }else if((Number(Number(Withdraw).toFixed(2)) < Number(Number(result[0].balance).toFixed(2))) && result[0].pend_withdraw == 0){
-                        var D = new Date().getDate()
-                        var M = new Date().getMonth()
-                        var Y = new Date().getFullYear()
-                        var H = new Date().getHours()
-                        var Mi = new Date().getMinutes()
-                        var S = new Date().getMinutes()
-                        if(D < 10){D='0'+D}
-                        if(M < 10){M = '0'+1+M}
-                        if(M > 9){M= 1+M}
-                        if(H < 10){H= '0'+H}
-                        if(Mi < 10){Mi= '0'+Mi}
-                        if(S < 10){S= '0'+S}
+
+                        const D = new Date().getDate() < 10 ? "0"+new Date().getDate() : new Date().getDate();
+                        const M = (new Date().getMonth()+1) > 9 ? new Date().getMonth()+1 : `0${(new Date().getMonth()+1)}`;
+                        const Y = new Date().getFullYear()
+
+                        const S = new Date().getSeconds() < 10 ? "0"+new Date().getSeconds() : new Date().getSeconds();
+                        const Mi = new Date().getMinutes() < 10 ? "0"+new Date().getMinutes() : new Date().getMinutes();
+                        const H = new Date().getHours() < 10 ? "0"+new Date().getHours() : new Date().getHours();
+
                         const Day = `${D}-${M}-${Y}|${H}:${Mi}:${S}`
 
                         const query = "UPDATE `users` SET `balance`=?,`pend_withdraw`=?,`total_withdraw`=?,`date`=? WHERE `username`=?"
                         MYSQL.query(query, [Number(result[0].balance) - Number(Withdraw), Withdraw, result[0].total_withdraw + Number(Withdraw),`${D}-${M}-${Y}`, client], (err, result) =>{
                             res.json({Approved: '/Client-Account'})
                         })
+                        
                         const query1 = "INSERT INTO `manager`(`client_name`, `balance`, `amount`, `date`) VALUES(?, ?, ? ,?)"
                         MYSQL.query(query1, [client,Number(result[0].balance) - Number(Withdraw),Number(Withdraw),Day], (err, result) =>{})
                     }
@@ -680,24 +681,18 @@ app.post('/Client-Account', UserOut, (req,res) =>{
             const query = "SELECT * FROM `users` WHERE `username`=? LIMIT 1"
             MYSQL.query(query, [client], (err, result) => {
                 if(result){
-                    var last_date = result[0].last_date
-                    if(last_date == ''){last_date = 'None'}
-                    var wallet_Add = result[0].wallet_no
-                    if(wallet_Add == ''){wallet_Add = 'None'}
-                    var wallet_Bal = Number(result[0].balance)
-                    if(wallet_Bal == '0'){wallet_Bal = 0.00}
-                    var wallet_Dep = result[0].total_depo
-                    if(wallet_Dep == ''){ wallet_Dep = '0.00'}
-                    var Total_with = result[0].total_withdraw
-                    if(Total_with == ''){ Total_with = '0'}
-                    var Last_with = result[0].last_withdraw
-                    if(Last_with == ''){Last_with = '0'}
-                    var Last_Depo = result[0].last_depo
-                    if(Last_Depo == ''){Last_Depo = '0.00'}
-                    var Current_Earn = Number(Number(result[0].current_earn).toFixed(2)).toLocaleString()
-                    if(Current_Earn == '0'){Current_Earn = '0.00'}
-                    var Total_Earn = Number(Number(result[0].total_earn).toFixed(2)).toLocaleString()
-                    if(Total_Earn == '0'){Total_Earn = '0.00'}
+                    const last_date = result[0].last_date == '' ? 'None' : result[0].last_date
+                    const wallet_Add = result[0].wallet_no == '' ? 'None' : result[0].wallet_no
+                    const wallet_Bal = Number(result[0].balance) == '0' ? 0.00 : Number(result[0].balance)
+                    const wallet_Dep = result[0].total_depo == '' ? '0.00' : result[0].total_depo
+                    const Total_with = result[0].total_withdraw == '' ? '0' : result[0].total_withdraw
+                    const Last_with = result[0].last_withdraw == '' ? '0' : result[0].last_withdraw
+                    const Last_Depo = result[0].last_depo == '' ? '0.00' : result[0].last_depo
+            
+                    let Current_Earn = Number(Number(result[0].current_earn).toFixed(2)).toLocaleString(); if(Current_Earn == '0'){Current_Earn = '0.00'}
+                    let Total_Earn = Number(Number(result[0].total_earn).toFixed(2)).toLocaleString(); if(Total_Earn == '0'){Total_Earn = '0.00'}
+                    
+
                     const PendWTH = result[0].pend_withdraw
                     return res.json({clientname: result[0].username, 
                         clientemail: `${result[0].email}`,update: last_date,wallet: wallet_Add, balance: wallet_Bal,
