@@ -38,23 +38,12 @@ app.use(session({
         }
 }))
 
-const Logout = (req, res, next) => {
-    if(!req.session.client){
-        res.redirect('/')
-    }else{
-        next()
-    }
-} 
-
-app.get('/LogOut-Client', Logout, (req, res) =>{
-    req.session.destroy(() => {
-        "Dexchange_Session_1WKDph6mi3n6cpruyKzvGu0PON1mmbSjPqRqfUVO8tj9PAU5rxpE3X5rAG3UK9P8q4mQghsMuW9xqbxOIViJ2h2"
-    })
-    res.redirect('/')
-})
-
 //**************    IMPORTED MODULES    **************//
 const MYSQL = require('./MODULES/Conn')
+const { AccountGet, AccountPost } = require('./MODULES/useraccount')
+const { DepositGet, DepositPost } = require('./MODULES/Deposit')
+const ROI = require('./MODULES/Interest')
+const PWDapi = require('./MODULES/pwdreset')
 
 //************** CONSTUME MIDDLE-WARES **************//
 const UserLoggedIn = (req, res, next) => {
@@ -109,6 +98,20 @@ const PassCheck = (req, res, next) => {
         next()
     }
 }
+const Logout = (req, res, next) => {
+    if(!req.session.client){
+        res.redirect('/')
+    }else{
+        next()
+    }
+} 
+
+app.get('/LogOut-Client', Logout, (req, res) =>{
+    req.session.destroy(() => {
+        "Dexchange_Session_1WKDph6mi3n6cpruyKzvGu0PON1mmbSjPqRqfUVO8tj9PAU5rxpE3X5rAG3UK9P8q4mQghsMuW9xqbxOIViJ2h2"
+    })
+    res.redirect('/')
+})
 
 //********************      CONTACT     ********************//
 app.get('/contact', (req,res) =>{res.sendFile(PATH.join(__dirname, './Public/pages/contact.html'))})
@@ -388,7 +391,7 @@ app.post('/login', UserLoggedIn, (req,res) =>{
                     req.session.client = result[0].username
                     res.json({login: 'Success'})
                 }else{
-                    res.json({ErrMsg: 'Invalid password or username!', PassLink: 'redirecting...'})
+                    res.json({ErrMsgP: 'Invalid password or username!', PassLink: 'redirecting...'})
                 }
 
             }else{
@@ -460,69 +463,9 @@ app.get(`/redirecting...`,  (req,res) =>{
     })
 })
 
-//**************************    PASSWORD RESET      **************************
+//**************************    PASSWORD RESET      **************************//
 app.get('/Client-Pwd-Rest', UserOut, (req,res) =>{res.sendFile(PATH.join(__dirname, './Public/pages/pwdreset.html'))})
-
-app.post('/Client-Pwd-Rest', (req,res) =>{
-    const {client,ForgotPassword}  = req.session
-
-    const d = new Date()
-    const DateMonth = ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
-    const DateDay = ['Sun', 'Mon', 'Tuse', 'Wed', 'Thur', 'Fri', 'Sat']
-    const Day = DateDay[d.getDay()]
-    const Month = DateMonth[d.getMonth()]
-    var DateD = d.getDate()
-    if(DateD < 10){
-        DateD = `0${DateD}`
-    }
-    var Min = d.getMinutes()
-    if(Min < 10){
-        Min = `0${Min}`
-    }
-    var Sec = d.getSeconds()
-    if(Sec < 10){
-        Sec = `0${Sec}`
-    }
-    const Last_Upd =  `${Day} ${Month} ${DateD} ${d.getFullYear()} ${d.getHours()}:${Min}:${Sec}`
-    const { Rest_code, New_Pwd, CNew_Pwd } = req.body
-
-    if(Rest_code, New_Pwd, CNew_Pwd){
-        if (New_Pwd == CNew_Pwd){
-            if(client !== undefined){
-                const query = "SELECT * FROM `users` WHERE `username`=? LIMIT 1"
-                MYSQL.query(query, [client], (err, result) =>{
-                    if (Rest_code !== result[0].pwd_reseter){
-                        res.json({note: "Invalid Rest Code"})
-                    }else if(Rest_code == result[0].pwd_reseter){
-                        res.json({success: "Password Reset Successful!"})
-                        const query = "UPDATE `users` SET `user_pwd`=?,`last_date`=? WHERE `username`=?"
-                        MYSQL.query(query, [New_Pwd, Last_Upd, client], (err, result) =>{})
-                    }else{
-                        console.log('Not Successful')
-                    }
-                })
-            }
-            if(ForgotPassword !== undefined){
-                const query = "SELECT * FROM `users` WHERE `email`=? LIMIT 1"
-                MYSQL.query(query, [ForgotPassword], (err, result) =>{
-                    if (Rest_code !== result[0].pwd_reseter){
-                        res.json({note: "Invalid Rest Code"})
-                    }else if(Rest_code == result[0].pwd_reseter){
-                        res.json({FPR: "Forget Password Reset Successful!"})
-                        const query = "UPDATE `users` SET `user_pwd`=?,`last_date`=? WHERE `email`=?"
-                        MYSQL.query(query, [New_Pwd, Last_Upd, ForgotPassword], (err, result) =>{})
-                    }else{
-                        console.log('Not Successful')
-                    }
-                })
-            }
-        }else{
-            res.json({note: 'Password Mismatched!'})
-        }
-    }else{
-        res.json({note: 'Empty Field!'})
-    }
-})
+app.post('/Client-Pwd-Rest', PWDapi, (req,res) =>{})
 
 //**************************    ACCOUNT SETUP   **************************//
 app.get('/Account-Setup', SetupOff, (req,res) =>{res.sendFile(PATH.join(__dirname, './Public/pages/setup.html'))})
@@ -561,279 +504,22 @@ app.post('/Account-Setup', SetupOff, (req,res) =>{
 })
 
 //**************************    CLIENT DASHBOARD GET   **************************//
-app.get('/Client-Account', UserOut, SetupCheck, (req,res) =>{
-    const {client}  = req.session
-    const query = "SELECT * FROM `users` WHERE `username`=?"
-    MYSQL.query(query,[client], (err, result) =>{
-        const Finder = result[0].ref_key
-        const query = "SELECT * FROM `users` WHERE `upline`=?"
-        MYSQL.query(query,[Finder], (err, result1) =>{
-            const query = "UPDATE `users` SET `total_ref`=? WHERE `username`=?"
-            MYSQL.query(query, [result1.length, client], (err, result) =>{}) //FOR UPDATING TOTAL REFERRAL OF A USER!
-        })
-        // FOR UPDATING THE ACTIVE REFERRALS
-        const query1 = "SELECT * FROM `users` WHERE `upline`=? AND `ref_status`=?"
-        MYSQL.query(query1,[Finder, 'Active'], (err, result2) =>{
-            const query = "UPDATE `users` SET `active_ref`=? WHERE `username`=?"
-            MYSQL.query(query, [result2.length, client], (err, result) =>{}) //FOR UPDATING THE ACTIVE REFERRALS STATUS!
-        })
-    })
-    res.sendFile(PATH.join(__dirname, './Public/pages/dashboard.html'))
-})
-
-app.post('/Client-Account', UserOut, (req,res) =>{
-    const {client}  = req.session
-
-    const New_Wallet = req.body.new_wallet_Add
-    const Deposit = req.body.deposit_amount
-    const {Withdraw} = req.body
-    const {Current_Pwd, New_Pwd, CNew_Pwd} = req.body
-        if(New_Wallet){
-        //################ WALLET ADDRESS HANDLER ######################//
-            const query = "UPDATE `users` SET `wallet_no`=? WHERE `username`=?"
-            MYSQL.query(query, [New_Wallet, client], (err, result) =>{
-                res.redirect('/Client-Account')
-            })
-        }else if(Current_Pwd, New_Pwd, CNew_Pwd){
-        //################ PASSWORD CHANGE HANDLER ######################//
-            const d = new Date()
-            const DateMonth = ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
-            const DateDay = ['Sun', 'Mon', 'Tuse', 'Wed', 'Thur', 'Fri', 'Sat']
-            const Day = DateDay[d.getDay()]
-            const Month = DateMonth[d.getMonth()]
-            var DateD = d.getDate()
-            if(DateD < 10){
-                DateD = `0${DateD}`
-            }
-            var Min = d.getMinutes()
-            if(Min < 10){
-                Min = `0${Min}`
-            }
-            var Sec = d.getSeconds()
-            if(Sec < 10){
-                Sec = `0${Sec}`
-            }
-            const Last_Upd =  `${Day} ${Month} ${DateD} ${d.getFullYear()} ${d.getHours()}:${Min}:${Sec}`
-            if(Current_Pwd, New_Pwd, CNew_Pwd){
-                if (New_Pwd == CNew_Pwd){
-                    const query = "SELECT * FROM `users` WHERE `username`=? LIMIT 1"
-                    MYSQL.query(query, [client], (err, result) =>{
-                        if (Current_Pwd !== result[0].user_pwd){
-                            res.json({note: "Invalid Current Password"})
-                        }else if(Current_Pwd == result[0].user_pwd){
-                            res.json({success: "Password Change Successful!"})
-                            const query = "UPDATE `users` SET `user_pwd`=?,`last_date`=? WHERE `username`=?"
-                            MYSQL.query(query, [New_Pwd, Last_Upd, client], (err, result) =>{})
-                        }else{
-                            console.log('Not Successful')
-                        }
-                    })
-                }else{
-                    res.json({note: 'Password Mismatched!'})
-                }
-            }else{
-                res.json({note: 'Empty Field!'})
-            }
-        }else if(Deposit){
-        //################ DEPOSIT HANDLER ######################//
-            res.redirect('/Client-Deposit-Confirmation')
-
-        }else if(Withdraw) {
-        //****************  WITHDRAWAL HANDLER  ****************//
-            if(Withdraw >= 10){
-                const query = "SELECT * FROM `users` WHERE `username`=? LIMIT 1"
-                MYSQL.query(query, [client], (err, result) => {
-                    if(result[0].wallet_no == ''){ //for wallet address
-
-                        res.json({Notify: 'No Wallet Address Avaliable!'})
-                    }else if(Number(Number(Withdraw).toFixed(2)) >= Number(Number(result[0].balance).toFixed(2))){ //for balance check
-                        res.json({Notify: 'Amount Must Be < Current Balance!'})
-
-                    }else if(result[0].pend_withdraw !== 0){ //for pending withdrawals
-
-                        res.json({Notify: 'A Withdrawal Is Still In Process!'})
-                    }else if((Number(Number(Withdraw).toFixed(2)) < Number(Number(result[0].balance).toFixed(2))) && result[0].pend_withdraw == 0){
-
-                        const D = new Date().getDate() < 10 ? "0"+new Date().getDate() : new Date().getDate();
-                        const M = (new Date().getMonth()+1) > 9 ? new Date().getMonth()+1 : `0${(new Date().getMonth()+1)}`;
-                        const Y = new Date().getFullYear()
-
-                        const S = new Date().getSeconds() < 10 ? "0"+new Date().getSeconds() : new Date().getSeconds();
-                        const Mi = new Date().getMinutes() < 10 ? "0"+new Date().getMinutes() : new Date().getMinutes();
-                        const H = new Date().getHours() < 10 ? "0"+new Date().getHours() : new Date().getHours();
-
-                        const Day = `${D}-${M}-${Y}|${H}:${Mi}:${S}`
-
-                        const query = "UPDATE `users` SET `balance`=?,`pend_withdraw`=?,`total_withdraw`=?,`date`=? WHERE `username`=?"
-                        MYSQL.query(query, [Number(result[0].balance) - Number(Withdraw), Withdraw, result[0].total_withdraw + Number(Withdraw),`${D}-${M}-${Y}`, client], (err, result) =>{
-                            res.json({Approved: '/Client-Account'})
-                        })
-                        
-                        const query1 = "INSERT INTO `manager`(`client_name`, `balance`, `amount`, `date`) VALUES(?, ?, ? ,?)"
-                        MYSQL.query(query1, [client,Number(result[0].balance) - Number(Withdraw),Number(Withdraw),Day], (err, result) =>{})
-                    }
-                })
-            }else{
-                res.json({Notify: 'Amount Too Low (Must Be >= $10)!'})
-            }
-        }else{
-        //################ GENERAL HANDLER OF CLIENT ACCOUNT######################//
-            const query = "SELECT * FROM `users` WHERE `username`=? LIMIT 1"
-            MYSQL.query(query, [client], (err, result) => {
-                if(result){
-                    const last_date = result[0].last_date == '' ? 'None' : result[0].last_date
-                    const wallet_Add = result[0].wallet_no == '' ? 'None' : result[0].wallet_no
-                    const wallet_Bal = Number(result[0].balance) == '0' ? 0.00 : Number(result[0].balance)
-                    const wallet_Dep = result[0].total_depo == '' ? '0.00' : result[0].total_depo
-                    const Total_with = result[0].total_withdraw == '' ? '0' : result[0].total_withdraw
-                    const Last_with = result[0].last_withdraw == '' ? '0' : result[0].last_withdraw
-                    const Last_Depo = result[0].last_depo == '' ? '0.00' : result[0].last_depo
-            
-                    let Current_Earn = Number(Number(result[0].current_earn).toFixed(2)).toLocaleString(); if(Current_Earn == '0'){Current_Earn = '0.00'}
-                    let Total_Earn = Number(Number(result[0].total_earn).toFixed(2)).toLocaleString(); if(Total_Earn == '0'){Total_Earn = '0.00'}
-                    
-
-                    const PendWTH = result[0].pend_withdraw
-                    return res.json({clientname: result[0].username, 
-                        clientemail: `${result[0].email}`,update: last_date,wallet: wallet_Add, balance: wallet_Bal,
-                        deposit: wallet_Dep,TotalWT: Total_with,LastWT: Last_with,WTHD:result[0].date,LastDP: Last_Depo,CurrentED: Current_Earn,
-                        TotalED: Total_Earn,Pending: PendWTH,Upline: result[0].upline,YourRef: result[0].ref_key,
-                        TRef: result[0].total_ref,ActiveRef: result[0].active_ref,RefComm: result[0].ref_comm,
-                    })
-                }else{
-                    console.log('Data UnInitialized!!!')
-                }
-            })
-        }
-})
+app.get('/Client-Account', UserOut, SetupCheck, AccountGet, (req,res) => {})
+app.post('/Client-Account', UserOut, AccountPost, (req,res) =>{})
 
 //**************************    DEPOSIT PAGE    **************************//
-app.get('/Client-Deposit-Confirmation', UserOut,(req,res) =>{
-        const {client}  = req.session
-        function Coupon_Code(){
-            var text =''
-            var possible="ABCDEFGHIJKMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789&%$"
-            for (let i=0; i<29; i++){
-                text += possible.charAt(Math.floor(Math.random()*possible.length))
-            }
-            
-            const query = "UPDATE `users` SET `coupon`=? WHERE `username`=?"
-            MYSQL.query(query, [text, client], (err, result) =>{})
-            
-            console.log(text)
-        }Coupon_Code()
-        res.sendFile(PATH.join(__dirname, './Public/pages/deposit.html'))  
-})
-
-app.post('/Client-Deposit-Confirmation', UserOut,(req,res) =>{
-    const {client}  = req.session
-
-    const { Coupon, Deposit_Amt } = req.body
-    if(Coupon, Deposit_Amt){
-        const query = "SELECT * FROM `users` WHERE `username`=? LIMIT 1"
-        MYSQL.query(query, [client], (err, result) =>{
-            if (Coupon !== result[0].coupon){
-                res.json({note: "Invalid Coupon!"})
-            }else if(Coupon == result[0].coupon && Deposit_Amt <= 49){
-                res.json({note: "Amount Is Too Low! (must be greater than $50)"})
-            }else if(Coupon == result[0].coupon && Deposit_Amt > 60000){
-                res.json({note: "Amount Is Too Hign! (must be less than $60000)"})
-            }else if(Coupon == result[0].coupon && Deposit_Amt > 49 && Deposit_Amt <= 60000){
-                res.json({success: "Deposit Successful!"})
-                var add = result[0].total_depo
-                if(add == 0){
-                    add = 0
-                }
-                var bal = (Number(result[0].balance) + Number(Deposit_Amt)) + Number(result[0].current_earn)
-                if(bal == '0'){
-                    bal = 0
-                }
-                const query = "UPDATE `users` SET `ref_status`=?,`balance`=?,`total_depo`=?,`last_depo`=?,`total_earn`=? WHERE `username`=?"
-                MYSQL.query(query, ['Active', bal, Number(Deposit_Amt) + add, Deposit_Amt, Number(result[0].total_earn)+Number(result[0].current_earn), client], (err, result) =>{})
-                const query1 = "UPDATE `users` SET `current_earn`=? WHERE `username`=?"
-                MYSQL.query(query1, [0, client], (err, result) =>{})
-
-                // ########## UPDATING OF UPLINERS COMMISSION ##########
-                const query2 = "SELECT * FROM `users` WHERE `ref_key`=?"
-                MYSQL.query(query2, [result[0].upline], (err, SubResult) =>{
-                    if(result[0].upline !== 'None'){
-                        const query = "UPDATE `users` SET `ref_comm`=?,`balance`=? WHERE `ref_key`=?"
-                        MYSQL.query(query, [SubResult[0].ref_comm + ((5/100)*Deposit_Amt),Number(SubResult[0].balance)+((5/100)*Deposit_Amt), result[0].upline], (err, result) =>{})
-                    }
-                })
-
-                const coupon_code = 'D$vh%_njtg' + ((Math.floor(Math.random() * 5)+45) * (Math.floor(Math.random() * 5)+15))*1267892 + 'stu$ebf%d'
-                const reset = "UPDATE `users` SET `coupon`=? WHERE `username`=?"
-                MYSQL.query(reset, [coupon_code, client], (err, result) =>{})
-
-
-            }else{
-                console.log('Not Successful')
-            }
-        })
-    }else{
-        res.json({note: 'Empty Field!'})
-    }
-})
+app.get('/Client-Deposit-Confirmation', UserOut, DepositGet, (req,res) =>{})
+app.post('/Client-Deposit-Confirmation', UserOut, DepositPost, (req,res) =>{})
 
 //**************************    CURRENT EARNED FORMULAR     **************************//
-app.get('/Interest',/*UserOut,*/ (req,res) =>{
-    res.redirect('/Client-Account') // INITIALIZATION OF THE INTEREST FURMULAR AND REDIRECTING TO DASHBOARD
-    const {client}  = req.session
-    function Interest() {
-        const query = "SELECT * FROM `users` WHERE `username`=? LIMIT 1"
-        MYSQL.query(query, [client], (err, result) => {
-            if(result){
-                const check = result[0].last_depo
-                var IntMultiple = 0
-                var stop = 0
-                if(check > 49 && check < 6000){ 
-                    IntMultiple = ((20/(((60*1))))/100)*result[0].last_depo
-                    stop = Number(result[0].last_depo*(20/100)) //FOR 20% INTEREST (20/(((60*60)*24)*2))/100
-                }
-                if(check >= 6000 && check < 20000){
-                    IntMultiple = ((45/(((60*1))))/100)*result[0].last_depo
-                    stop = Number(result[0].last_depo*(45/100)) //FOR 45% INTEREST (45/(((60*60)*24)*4))/100
-                }
-                if(check >= 20000 && check <= 50000){
-                    IntMultiple = ((75/(((60*1))))/100)*result[0].last_depo
-                    stop = Number(result[0].last_depo*(75/100)) //FOR 75% INTEREST (75/(((60*60)*24)*6))/100
-                }
-                
-                const earnbal = IntMultiple
-                if(Number(result[0].current_earn)+0.5 > stop){
-                    clearInterval(call) //STOP OF THE INTEREST FUNCTION
-                }else if(result[0].last_depo >= 50 && result[0].last_depo < 5999){
-                    if(Number(result[0].current_earn) < Number(result[0].last_depo*(20/100))){
-                        const query = "UPDATE `users` SET `current_earn`=? WHERE `username`=?"
-                        MYSQL.query(query, [(Number(earnbal)+Number(result[0].current_earn)), client], (err, result) =>{})
-                        // console.log(Number(result[0].current_earn))
-                    }
-                }else if (result[0].last_depo >= 6000 && result[0].last_depo < 19999){
-                    if(Number(result[0].current_earn) < Number(result[0].last_depo*(45/100))){
-                        const query = "UPDATE `users` SET `current_earn`=? WHERE `username`=?"
-                        MYSQL.query(query, [(Number(earnbal)+Number(result[0].current_earn)), client], (err, result) =>{})
-                        // console.log(Number(result[0].current_earn))
-                    }
-                }else if(result[0].last_depo >= 20000 && result[0].last_depo <= 50000){
-                    if(Number(result[0].current_earn) < Number(result[0].last_depo*(75/100))){
-                        const query = "UPDATE `users` SET `current_earn`=? WHERE `username`=?"
-                        MYSQL.query(query, [(Number(earnbal)+Number(result[0].current_earn)), client], (err, result) =>{})
-                        // console.log(Number(result[0].current_earn))
-                    }
-                }
-            }
-        })
-    }
-    const call = setInterval(Interest, 1000)
-})
+app.get('/Interest', UserOut, ROI, (req,res) =>{})
 
-app.get('/admin', (req, res) => {
-    res.sendFile(PATH.join(__dirname, './Public/pages/test.html'))
-})
-
+//********************************    ADMINISTRATORS ROUTE     ********************************//
+app.get('/admin', (req, res) => { res.sendFile(PATH.join(__dirname, './Public/pages/test.html')) })
 app.post('/admin', (req, res) => {
+
     const RunReq = req.body.approved
+
     if(RunReq){
         const query = "SELECT * FROM `users` WHERE `username`=? LIMIT 1"
         MYSQL.query(query, [RunReq], (err, result) => {

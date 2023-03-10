@@ -27,23 +27,25 @@ $('.login_form form').on('submit', (e) => {
             const check = [$('.client_username'),$('.client_pwd')]
             if(data.login){
                 window.location.href = '/Interest'
-            }else if(data.ErrMsg){
-                if(data.ErrMsg == 'Invalid Password Or Username!'){
+            }else if(data.ErrMsg || data.ErrMsgP){
+                if(data.ErrMsgP){
                     invalCount ++
+
                     if(invalCount > 2){
+                        console.log('yes')
                         $('.Msg-out').html(`<a href="/${data.PassLink}" style="color:red;">FORGOT PASSWORD?</a>`)
                     }else{
-                        $('.Msg-out').html(data.ErrMsg), setTimeout(() => {$('.Msg-out').html('')},2500)
+                        $('.Msg-out').html(data.ErrMsgP), setTimeout(() => {$('.Msg-out').html('')},2500)
                     }
                 }else{
                     $('.Msg-out').html(data.ErrMsg), setTimeout(() => {$('.Msg-out').html('')},2500)
                 }  
             }
-            for (let i = 0; i < check.length; i++) {
-                if(check[i].val() == ''){
-                    return check[i].focus()
-                }
-            }
+            // for (let i = 0; i < check.length; i++) {
+            //     if(check[i].val() == ''){
+            //         return check[i].focus()
+            //     }
+            // }
         },
         error: (err) => {
             console.log(err)
